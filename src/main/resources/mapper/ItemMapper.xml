@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timescale.server.mapper.ItemMapper">
+    
+    <resultMap id="ItemResultMap" type="com.timescale.server.entity.Item">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="item_category" property="itemCategory"/>
+        <result column="purchase_price" property="purchasePrice"/>
+        <result column="purchase_date" property="purchaseDate"/>
+        <result column="own_id" property="ownId"/>
+        <result column="deleted" property="deleted"/>
+        <result column="mark_time" property="markTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    
+    <sql id="Base_Column_List">
+        id, name, item_category, purchase_price, purchase_date, own_id, deleted, mark_time, update_time
+    </sql>
+    
+    <select id="findByCondition" resultMap="ItemResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM item
+        <where>
+            AND deleted = false
+            <if test="itemCategory != null">
+                AND item_category = #{itemCategory}
+            </if>
+            <if test="nameKeyword != null and nameKeyword != ''">
+                AND name LIKE CONCAT('%', #{nameKeyword}, '%')
+            </if>
+            <if test="minPurchaseDate != null">
+                AND purchase_date >= #{minPurchaseDate}
+            </if>
+            <if test="maxPurchaseDate != null">
+                AND purchase_date <= #{maxPurchaseDate}
+            </if>
+            <if test="minMarkDate != null">
+                AND DATE(mark_time) >= #{minMarkDate}
+            </if>
+            <if test="maxMarkDate != null">
+                AND DATE(mark_time) <= #{maxMarkDate}
+            </if>
+        </where>
+        <choose>
+            <when test="sortBy == 'name'">
+                ORDER BY name ${sortOrder}
+            </when>
+            <when test="sortBy == 'purchasePrice'">
+                ORDER BY purchase_price ${sortOrder}
+            </when>
+            <when test="sortBy == 'purchaseDate'">
+                ORDER BY purchase_date ${sortOrder}
+            </when>
+            <when test="sortBy == 'markTime'">
+                ORDER BY mark_time ${sortOrder}
+            </when>
+            <otherwise>
+                ORDER BY mark_time DESC
+            </otherwise>
+        </choose>
+    </select>
+    
+</mapper>
