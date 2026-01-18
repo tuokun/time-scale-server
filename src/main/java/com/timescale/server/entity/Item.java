@@ -1,19 +1,38 @@
 package com.timescale.server.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.timescale.server.enums.ItemCategory;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@TableName("item")
 public class Item {
     private Long id;
+    
+    @TableField("name")
     private String name;
+    
+    @TableField("item_category")
     private ItemCategory itemCategory;
+    
+    @TableField("purchase_price")
     private BigDecimal purchasePrice;
+    
+    @TableField("purchase_date")
     private LocalDate purchaseDate;
+    @TableField("own_id")
     private String ownId;
+    
+    @TableLogic
+    @TableField("deleted")
     private Boolean deleted;
+    
+    @TableField("mark_time")
     private LocalDateTime markTime;
+    @TableField("update_time")
     private LocalDateTime updateTime;
 
     public Item() {}
