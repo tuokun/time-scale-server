@@ -1,12 +1,14 @@
 package com.timescale.server.dto;
 
-import com.timescale.server.enums.ItemCategory;
+import com.timescale.server.enums.Level1Category;
+import com.timescale.server.enums.Level2Category;
 import java.time.LocalDate;
 
 public class ItemQueryDTO {
     private Integer pageNum = 1;
     private Integer pageSize = 10;
-    private ItemCategory itemCategory;
+    private Level1Category itemCategoryLevel1;
+    private Level2Category itemCategoryLevel2;
     private String nameKeyword;
     private String sortBy = "markTime";
     private String sortOrder = "desc";
@@ -31,12 +33,20 @@ public class ItemQueryDTO {
         this.pageSize = pageSize;
     }
 
-    public ItemCategory getItemCategory() {
-        return itemCategory;
+    public Level1Category getItemCategoryLevel1() {
+        return itemCategoryLevel1;
     }
 
-    public void setItemCategory(ItemCategory itemCategory) {
-        this.itemCategory = itemCategory;
+    public void setItemCategoryLevel1(Level1Category itemCategoryLevel1) {
+        this.itemCategoryLevel1 = itemCategoryLevel1;
+    }
+
+    public Level2Category getItemCategoryLevel2() {
+        return itemCategoryLevel2;
+    }
+
+    public void setItemCategoryLevel2(Level2Category itemCategoryLevel2) {
+        this.itemCategoryLevel2 = itemCategoryLevel2;
     }
 
     public String getNameKeyword() {
