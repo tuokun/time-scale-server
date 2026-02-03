@@ -3,7 +3,7 @@ package com.timescale.server.enums;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum SubCategory {
-    // DIGITAL (数字产品)
+    // DIGITAL (数字虚拟)
     SOFTWARE_APP(BaseCategory.DIGITAL, "软件应用"),
     OFFICE_SOFTWARE(BaseCategory.DIGITAL, "办公软件"),
     TOOL_SOFTWARE(BaseCategory.DIGITAL, "工具软件"),
@@ -13,7 +13,13 @@ public enum SubCategory {
     EBOOK(BaseCategory.DIGITAL, "电子书籍"),
     VIDEO_MEMBERSHIP(BaseCategory.DIGITAL, "视频会员"),
     MUSIC_MEMBERSHIP(BaseCategory.DIGITAL, "音乐会员"),
+    READING_MEMBERSHIP(BaseCategory.DIGITAL, "阅读会员"),
     OTHER_MEMBERSHIP(BaseCategory.DIGITAL, "其他会员"),
+    GAME_POINTS(BaseCategory.DIGITAL, "游戏点数"),
+    TOPUP_CARD(BaseCategory.DIGITAL, "充值卡"),
+    LIVE_GIFT(BaseCategory.DIGITAL, "直播打赏"),
+    VIRTUAL_ITEM(BaseCategory.DIGITAL, "虚拟礼物"),
+    GAME_SKIN(BaseCategory.DIGITAL, "游戏皮肤"),
     OTHER_DIGITAL(BaseCategory.DIGITAL, "其他数字产品"),
 
     // ELECTRONICS (电子产品)
@@ -122,17 +128,6 @@ public enum SubCategory {
     TRAVEL_SERVICE(BaseCategory.SERVICE, "旅游服务"),
     CONSULTING_SERVICE(BaseCategory.SERVICE, "咨询服务"),
     OTHER_SERVICE(BaseCategory.SERVICE, "其他服务"),
-
-    // VIRTUAL (虚拟权益)
-    GAME_POINTS(BaseCategory.VIRTUAL, "游戏点数"),
-    TOPUP_CARD(BaseCategory.VIRTUAL, "充值卡"),
-    VIDEO_MEMBERSHIP(BaseCategory.VIRTUAL, "视频会员"),
-    MUSIC_MEMBERSHIP(BaseCategory.VIRTUAL, "音乐会员"),
-    READING_MEMBERSHIP(BaseCategory.VIRTUAL, "阅读会员"),
-    LIVE_GIFT(BaseCategory.VIRTUAL, "直播打赏"),
-    VIRTUAL_ITEM(BaseCategory.VIRTUAL, "虚拟礼物"),
-    GAME_SKIN(BaseCategory.VIRTUAL, "游戏皮肤"),
-    OTHER_VIRTUAL(BaseCategory.VIRTUAL, "其他虚拟权益"),
 
     // OTHER (其他)
     OTHER_ITEM(BaseCategory.OTHER, "其他商品"),

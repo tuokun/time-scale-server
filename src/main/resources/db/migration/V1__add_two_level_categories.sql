@@ -72,25 +72,24 @@ CREATE TABLE category_level2 (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='二级分类表';
 
 -- =====================================================
--- 5. 插入一级分类数据（9个）
+-- 5. 插入一级分类数据（8个）
 -- =====================================================
 
 INSERT INTO category_level1 (category_code, category_name, description, sort_order) VALUES
-('DIGITAL', '数字产品', '软件、会员、游戏等数字商品', 1),
+('DIGITAL', '数字虚拟', '软件、会员、游戏、虚拟权益等数字商品', 1),
 ('ELECTRONICS', '电子产品', '手机、电脑、相机等电子设备', 2),
 ('APPLIANCE', '家用电器', '厨房电器、空调、冰箱等家电', 3),
 ('FURNITURE', '家具', '床、沙发、桌子等家具', 4),
 ('CLOTHING', '服饰', '衣服、鞋子、包包等', 5),
 ('CONSUMABLE', '消耗品', '日用品、食品、药品等消耗品', 6),
 ('SERVICE', '服务类', '维修、家政、旅游等服务', 7),
-('VIRTUAL', '虚拟权益', '点数、会员、皮肤等虚拟商品', 8),
-('OTHER', '其他', '无法分类的其他商品', 9);
+('OTHER', '其他', '无法分类的其他商品', 8);
 
 -- =====================================================
 -- 6. 插入二级分类数据（约70个）
 -- =====================================================
 
--- DIGITAL (数字产品)
+-- DIGITAL (数字虚拟)
 INSERT INTO category_level2 (base_category, category_code, category_name, description, sort_order) VALUES
 ('DIGITAL', 'SOFTWARE_APP', '软件应用', '各类应用程序', 1),
 ('DIGITAL', 'OFFICE_SOFTWARE', '办公软件', 'Word、Excel等办公软件', 2),
@@ -101,8 +100,14 @@ INSERT INTO category_level2 (base_category, category_code, category_name, descri
 ('DIGITAL', 'EBOOK', '电子书籍', '电子书、杂志', 7),
 ('DIGITAL', 'VIDEO_MEMBERSHIP', '视频会员', '视频网站会员', 8),
 ('DIGITAL', 'MUSIC_MEMBERSHIP', '音乐会员', '音乐平台会员', 9),
-('DIGITAL', 'OTHER_MEMBERSHIP', '其他会员', '其他订阅服务', 10),
-('DIGITAL', 'OTHER_DIGITAL', '其他数字产品', '无法分类的数字产品', 11);
+('DIGITAL', 'READING_MEMBERSHIP', '阅读会员', '阅读平台会员', 10),
+('DIGITAL', 'OTHER_MEMBERSHIP', '其他会员', '其他订阅服务', 11),
+('DIGITAL', 'GAME_POINTS', '游戏点数', '游戏点数', 12),
+('DIGITAL', 'TOPUP_CARD', '充值卡', '充值卡', 13),
+('DIGITAL', 'LIVE_GIFT', '直播打赏', '直播打赏', 14),
+('DIGITAL', 'VIRTUAL_ITEM', '虚拟礼物', '虚拟礼物', 15),
+('DIGITAL', 'GAME_SKIN', '游戏皮肤', '游戏皮肤', 16),
+('DIGITAL', 'OTHER_DIGITAL', '其他数字产品', '无法分类的数字产品', 17);
 
 -- ELECTRONICS (电子产品)
 INSERT INTO category_level2 (base_category, category_code, category_name, description, sort_order) VALUES
@@ -217,18 +222,6 @@ INSERT INTO category_level2 (base_category, category_code, category_name, descri
 ('SERVICE', 'CONSULTING_SERVICE', '咨询服务', '咨询服务', 6),
 ('SERVICE', 'OTHER_SERVICE', '其他服务', '无法分类的服务', 7);
 
--- VIRTUAL (虚拟权益)
-INSERT INTO category_level2 (base_category, category_code, category_name, description, sort_order) VALUES
-('VIRTUAL', 'GAME_POINTS', '游戏点数', '游戏点数', 1),
-('VIRTUAL', 'TOPUP_CARD', '充值卡', '充值卡', 2),
-('VIRTUAL', 'VIDEO_MEMBERSHIP', '视频会员', '视频会员', 3),
-('VIRTUAL', 'MUSIC_MEMBERSHIP', '音乐会员', '音乐会员', 4),
-('VIRTUAL', 'READING_MEMBERSHIP', '阅读会员', '阅读会员', 5),
-('VIRTUAL', 'LIVE_GIFT', '直播打赏', '直播打赏', 6),
-('VIRTUAL', 'VIRTUAL_ITEM', '虚拟礼物', '虚拟礼物', 7),
-('VIRTUAL', 'GAME_SKIN', '游戏皮肤', '游戏皮肤', 8),
-('VIRTUAL', 'OTHER_VIRTUAL', '其他虚拟权益', '无法分类的虚拟权益', 9);
-
 -- OTHER (其他)
 INSERT INTO category_level2 (base_category, category_code, category_name, description, sort_order) VALUES
 ('OTHER', 'OTHER_ITEM', '其他商品', '无法分类的商品', 1),
@@ -320,7 +313,7 @@ INSERT INTO icon_mapping (sub_category, icon, icon_type, description, sort_order
 ('PAJAMAS', '🛌', 'emoji', '睡衣', 71),
 ('OTHER_CLOTHING', '👕', 'emoji', '其他服饰', 72),
 
--- 数字产品
+-- 数字虚拟
 ('SOFTWARE_APP', '📱', 'emoji', '软件应用', 73),
 ('OFFICE_SOFTWARE', '📄', 'emoji', '办公软件', 74),
 ('TOOL_SOFTWARE', '🔧', 'emoji', '工具软件', 75),
@@ -330,8 +323,14 @@ INSERT INTO icon_mapping (sub_category, icon, icon_type, description, sort_order
 ('EBOOK', '📖', 'emoji', '电子书籍', 79),
 ('VIDEO_MEMBERSHIP', '📺', 'emoji', '视频会员', 80),
 ('MUSIC_MEMBERSHIP', '🎵', 'emoji', '音乐会员', 81),
-('OTHER_MEMBERSHIP', '🎫', 'emoji', '其他会员', 82),
-('OTHER_DIGITAL', '💾', 'emoji', '其他数字产品', 83),
+('READING_MEMBERSHIP', '📚', 'emoji', '阅读会员', 82),
+('OTHER_MEMBERSHIP', '🎫', 'emoji', '其他会员', 83),
+('GAME_POINTS', '🎯', 'emoji', '游戏点数', 84),
+('TOPUP_CARD', '💳', 'emoji', '充值卡', 85),
+('LIVE_GIFT', '🎁', 'emoji', '直播打赏', 86),
+('VIRTUAL_ITEM', '🎁', 'emoji', '虚拟礼物', 87),
+('GAME_SKIN', '🎨', 'emoji', '游戏皮肤', 88),
+('OTHER_DIGITAL', '💾', 'emoji', '其他数字产品', 89),
 
 -- 消耗品
 ('SHAMPOO', '🧴', 'emoji', '洗发水', 84),
@@ -360,16 +359,10 @@ INSERT INTO icon_mapping (sub_category, icon, icon_type, description, sort_order
 ('CONSULTING_SERVICE', '💬', 'emoji', '咨询服务', 105),
 ('OTHER_SERVICE', '🤝', 'emoji', '其他服务', 106),
 
--- 虚拟权益
-('GAME_POINTS', '🎯', 'emoji', '游戏点数', 107),
-('TOPUP_CARD', '💳', 'emoji', '充值卡', 108),
-('VIDEO_MEMBERSHIP', '📺', 'emoji', '视频会员', 109),
-('MUSIC_MEMBERSHIP', '🎵', 'emoji', '音乐会员', 110),
-('READING_MEMBERSHIP', '📚', 'emoji', '阅读会员', 111),
-('LIVE_GIFT', '🎁', 'emoji', '直播打赏', 112),
-('VIRTUAL_ITEM', '🎁', 'emoji', '虚拟礼物', 113),
-('GAME_SKIN', '🎨', 'emoji', '游戏皮肤', 114),
-('OTHER_VIRTUAL', '💎', 'emoji', '其他虚拟权益', 115),
+-- 其他
+('OTHER_ITEM', '📦', 'emoji', '其他商品', 107),
+('GIFT', '🎁', 'emoji', '礼品', 108),
+('SOUVENIR', '🏆', 'emoji', '纪念品', 109);
 
 -- 其他
 ('OTHER_ITEM', '📦', 'emoji', '其他商品', 116),
