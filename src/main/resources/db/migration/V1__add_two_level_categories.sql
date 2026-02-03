@@ -21,7 +21,7 @@ CREATE INDEX idx_item_category_level2 ON item(item_category_level2);
 
 CREATE TABLE icon_mapping (
     id BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '主键ID',
-    level2_category VARCHAR(50) NOT NULL COMMENT '二级分类名称',
+    sub_category VARCHAR(50) NOT NULL COMMENT '二级分类名称',
     icon VARCHAR(100) NOT NULL COMMENT '图标（emoji或图标名称）',
     icon_type VARCHAR(20) DEFAULT 'emoji' COMMENT '图标类型：emoji/image',
     description VARCHAR(200) COMMENT '描述',
@@ -29,7 +29,7 @@ CREATE TABLE icon_mapping (
     deleted TINYINT(1) NOT NULL DEFAULT 0 COMMENT '软删除标记',
     mark_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     update_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    UNIQUE KEY uk_level2_category (level2_category),
+    UNIQUE KEY uk_sub_category (sub_category),
     INDEX idx_sort_order (sort_order),
     INDEX idx_deleted (deleted)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='图标映射表';
@@ -57,7 +57,7 @@ CREATE TABLE category_level1 (
 
 CREATE TABLE category_level2 (
     id BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '主键ID',
-    level1_category VARCHAR(50) NOT NULL COMMENT '一级分类代码',
+    base_category VARCHAR(50) NOT NULL COMMENT '一级分类代码',
     category_code VARCHAR(50) NOT NULL COMMENT '二级分类代码',
     category_name VARCHAR(50) NOT NULL COMMENT '分类名称',
     description VARCHAR(200) COMMENT '描述',
@@ -66,7 +66,7 @@ CREATE TABLE category_level2 (
     mark_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     update_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     UNIQUE KEY uk_category_code (category_code),
-    INDEX idx_level1_category (level1_category),
+    INDEX idx_base_category (base_category),
     INDEX idx_sort_order (sort_order),
     INDEX idx_deleted (deleted)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='二级分类表';
@@ -91,7 +91,7 @@ INSERT INTO category_level1 (category_code, category_name, description, sort_ord
 -- =====================================================
 
 -- DIGITAL (数字产品)
-INSERT INTO category_level2 (level1_category, category_code, category_name, description, sort_order) VALUES
+INSERT INTO category_level2 (base_category, category_code, category_name, description, sort_order) VALUES
 ('DIGITAL', 'SOFTWARE_APP', '软件应用', '各类应用程序', 1),
 ('DIGITAL', 'OFFICE_SOFTWARE', '办公软件', 'Word、Excel等办公软件', 2),
 ('DIGITAL', 'TOOL_SOFTWARE', '工具软件', '实用工具类软件', 3),
@@ -105,7 +105,7 @@ INSERT INTO category_level2 (level1_category, category_code, category_name, desc
 ('DIGITAL', 'OTHER_DIGITAL', '其他数字产品', '无法分类的数字产品', 11);
 
 -- ELECTRONICS (电子产品)
-INSERT INTO category_level2 (level1_category, category_code, category_name, description, sort_order) VALUES
+INSERT INTO category_level2 (base_category, category_code, category_name, description, sort_order) VALUES
 ('ELECTRONICS', 'MOBILE_PHONE', '手机', '智能手机', 1),
 ('ELECTRONICS', 'TABLET', '平板电脑', 'iPad等平板设备', 2),
 ('ELECTRONICS', 'LAPTOP', '笔记本电脑', '便携式电脑', 3),
@@ -123,7 +123,7 @@ INSERT INTO category_level2 (level1_category, category_code, category_name, desc
 ('ELECTRONICS', 'OTHER_ELECTRONICS', '其他电子产品', '无法分类的电子产品', 15);
 
 -- APPLIANCE (家用电器)
-INSERT INTO category_level2 (level1_category, category_code, category_name, description, sort_order) VALUES
+INSERT INTO category_level2 (base_category, category_code, category_name, description, sort_order) VALUES
 ('APPLIANCE', 'RICE_COOKER', '电饭煲', '煮饭设备', 1),
 ('APPLIANCE', 'MICROWAVE', '微波炉', '微波加热设备', 2),
 ('APPLIANCE', 'SOY_MILK_MACHINE', '豆浆机', '豆浆制作设备', 3),
@@ -142,7 +142,7 @@ INSERT INTO category_level2 (level1_category, category_code, category_name, desc
 ('APPLIANCE', 'OTHER_APPLIANCE', '其他家用电器', '无法分类的家电', 16);
 
 -- FURNITURE (家具)
-INSERT INTO category_level2 (level1_category, category_code, category_name, description, sort_order) VALUES
+INSERT INTO category_level2 (base_category, category_code, category_name, description, sort_order) VALUES
 ('FURNITURE', 'BED', '床', '床铺', 1),
 ('FURNITURE', 'MATTRESS', '床垫', '床垫', 2),
 ('FURNITURE', 'NIGHTSTAND', '床头柜', '床头柜', 3),
@@ -163,7 +163,7 @@ INSERT INTO category_level2 (level1_category, category_code, category_name, desc
 ('FURNITURE', 'OTHER_FURNITURE', '其他家具', '无法分类的家具', 18);
 
 -- CLOTHING (服饰)
-INSERT INTO category_level2 (level1_category, category_code, category_name, description, sort_order) VALUES
+INSERT INTO category_level2 (base_category, category_code, category_name, description, sort_order) VALUES
 ('CLOTHING', 'T_SHIRT', 'T恤', 'T恤衫', 1),
 ('CLOTHING', 'SHIRT', '衬衫', '衬衫', 2),
 ('CLOTHING', 'JACKET', '外套', '夹克、外套', 3),
@@ -189,7 +189,7 @@ INSERT INTO category_level2 (level1_category, category_code, category_name, desc
 ('CLOTHING', 'OTHER_CLOTHING', '其他服饰', '无法分类的服饰', 23);
 
 -- CONSUMABLE (消耗品)
-INSERT INTO category_level2 (level1_category, category_code, category_name, description, sort_order) VALUES
+INSERT INTO category_level2 (base_category, category_code, category_name, description, sort_order) VALUES
 ('CONSUMABLE', 'SHAMPOO', '洗发水', '洗发用品', 1),
 ('CONSUMABLE', 'CONDITIONER', '护发素', '护发用品', 2),
 ('CONSUMABLE', 'TOOTHPASTE', '牙膏', '牙膏', 3),
@@ -208,7 +208,7 @@ INSERT INTO category_level2 (level1_category, category_code, category_name, desc
 ('CONSUMABLE', 'OTHER_CONSUMABLE', '其他消耗品', '无法分类的消耗品', 16);
 
 -- SERVICE (服务类)
-INSERT INTO category_level2 (level1_category, category_code, category_name, description, sort_order) VALUES
+INSERT INTO category_level2 (base_category, category_code, category_name, description, sort_order) VALUES
 ('SERVICE', 'REPAIR_SERVICE', '维修服务', '维修服务', 1),
 ('SERVICE', 'HOUSEKEEPING', '家政服务', '家政服务', 2),
 ('SERVICE', 'BEAUTY_SERVICE', '美容服务', '美容服务', 3),
@@ -218,7 +218,7 @@ INSERT INTO category_level2 (level1_category, category_code, category_name, desc
 ('SERVICE', 'OTHER_SERVICE', '其他服务', '无法分类的服务', 7);
 
 -- VIRTUAL (虚拟权益)
-INSERT INTO category_level2 (level1_category, category_code, category_name, description, sort_order) VALUES
+INSERT INTO category_level2 (base_category, category_code, category_name, description, sort_order) VALUES
 ('VIRTUAL', 'GAME_POINTS', '游戏点数', '游戏点数', 1),
 ('VIRTUAL', 'TOPUP_CARD', '充值卡', '充值卡', 2),
 ('VIRTUAL', 'VIDEO_MEMBERSHIP', '视频会员', '视频会员', 3),
@@ -230,7 +230,7 @@ INSERT INTO category_level2 (level1_category, category_code, category_name, desc
 ('VIRTUAL', 'OTHER_VIRTUAL', '其他虚拟权益', '无法分类的虚拟权益', 9);
 
 -- OTHER (其他)
-INSERT INTO category_level2 (level1_category, category_code, category_name, description, sort_order) VALUES
+INSERT INTO category_level2 (base_category, category_code, category_name, description, sort_order) VALUES
 ('OTHER', 'OTHER_ITEM', '其他商品', '无法分类的商品', 1),
 ('OTHER', 'GIFT', '礼品', '礼品', 2),
 ('OTHER', 'SOUVENIR', '纪念品', '纪念品', 3);
@@ -239,7 +239,7 @@ INSERT INTO category_level2 (level1_category, category_code, category_name, desc
 -- 7. 插入图标映射数据
 -- =====================================================
 
-INSERT INTO icon_mapping (level2_category, icon, icon_type, description, sort_order) VALUES
+INSERT INTO icon_mapping (sub_category, icon, icon_type, description, sort_order) VALUES
 -- 电子产品
 ('MOBILE_PHONE', '📱', 'emoji', '手机', 1),
 ('TABLET', '📱', 'emoji', '平板电脑', 2),

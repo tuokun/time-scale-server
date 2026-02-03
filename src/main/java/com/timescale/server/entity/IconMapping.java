@@ -52,11 +52,11 @@ public class IconMapping {
         this.id = id;
     }
 
-    public String getLevel2Category() {
+    public String getSubCategory() {
         return level2Category;
     }
 
-    public void setLevel2Category(String level2Category) {
+    public void setSubCategory(String level2Category) {
         this.level2Category = level2Category;
     }
 

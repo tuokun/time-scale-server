@@ -6,8 +6,8 @@ import com.timescale.server.dto.ItemUpdateDTO;
 import com.timescale.server.dto.PageResult;
 import com.timescale.server.dto.ResponseDTO;
 import com.timescale.server.entity.Item;
-import com.timescale.server.enums.Level1Category;
-import com.timescale.server.enums.Level2Category;
+import com.timescale.server.enums.BaseCategory;
+import com.timescale.server.enums.SubCategory;
 import com.timescale.server.service.ItemService;
 import jakarta.validation.Valid;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -37,8 +37,8 @@ public class ItemController {
     public PageResult<Item> getItems(
             @RequestParam(defaultValue = "1") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize,
-            @RequestParam(required = false) Level1Category itemCategoryLevel1,
-            @RequestParam(required = false) Level2Category itemCategoryLevel2,
+            @RequestParam(required = false) BaseCategory baseCategory,
+            @RequestParam(required = false) SubCategory subCategory,
             @RequestParam(required = false) String nameKeyword,
             @RequestParam(defaultValue = "markTime") String sortBy,
             @RequestParam(defaultValue = "desc") String sortOrder,
@@ -50,8 +50,8 @@ public class ItemController {
         ItemQueryDTO queryDTO = new ItemQueryDTO();
         queryDTO.setPageNum(pageNum);
         queryDTO.setPageSize(pageSize);
-        queryDTO.setItemCategoryLevel1(itemCategoryLevel1);
-        queryDTO.setItemCategoryLevel2(itemCategoryLevel2);
+        queryDTO.setItemCategoryLevel1(baseCategory);
+        queryDTO.setItemCategoryLevel2(subCategory);
         queryDTO.setNameKeyword(nameKeyword);
         queryDTO.setSortBy(sortBy);
         queryDTO.setSortOrder(sortOrder);

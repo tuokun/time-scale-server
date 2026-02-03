@@ -8,7 +8,7 @@ import com.timescale.server.dto.ItemQueryDTO;
 import com.timescale.server.dto.ItemUpdateDTO;
 import com.timescale.server.dto.PageResult;
 import com.timescale.server.entity.Item;
-import com.timescale.server.enums.Level1Category;
+import com.timescale.server.enums.BaseCategory;
 import com.timescale.server.exception.BusinessException;
 import com.timescale.server.mapper.ItemMapper;
 import com.timescale.server.service.ItemService;
@@ -133,7 +133,7 @@ public class ItemServiceImpl implements ItemService {
         }
 
         if (updateDTO.getItemCategoryLevel1() != null || updateDTO.getPurchasePrice() != null) {
-            Level1Category category = updateDTO.getItemCategoryLevel1() != null
+            BaseCategory category = updateDTO.getItemCategoryLevel1() != null
                 ? updateDTO.getItemCategoryLevel1()
                 : existingItem.getItemCategoryLevel1();
             var price = updateDTO.getPurchasePrice() != null
@@ -174,8 +174,8 @@ public class ItemServiceImpl implements ItemService {
         itemMapper.updateById(item);
     }
 
-    private void validatePurchasePrice(Level1Category category, java.math.BigDecimal price) {
-        if (category == Level1Category.CONSUMABLE && price.compareTo(java.math.BigDecimal.valueOf(1000)) > 0) {
+    private void validatePurchasePrice(BaseCategory category, java.math.BigDecimal price) {
+        if (category == BaseCategory.CONSUMABLE && price.compareTo(java.math.BigDecimal.valueOf(1000)) > 0) {
             throw new BusinessException("消耗品价格不能超过1000元");
         }
     }

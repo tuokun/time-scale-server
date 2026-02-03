@@ -3,8 +3,8 @@ package com.timescale.server.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.timescale.server.enums.Level1Category;
-import com.timescale.server.enums.Level2Category;
+import com.timescale.server.enums.BaseCategory;
+import com.timescale.server.enums.SubCategory;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,10 +17,10 @@ public class Item {
     private String name;
 
     @TableField("item_category_level1")
-    private Level1Category itemCategoryLevel1;
+    private BaseCategory baseCategory;
 
     @TableField("item_category_level2")
-    private Level2Category itemCategoryLevel2;
+    private SubCategory subCategory;
 
     @TableField("purchase_price")
     private BigDecimal purchasePrice;
@@ -41,10 +41,10 @@ public class Item {
 
     public Item() {}
 
-    public Item(String name, Level1Category itemCategoryLevel1, Level2Category itemCategoryLevel2, BigDecimal purchasePrice, LocalDate purchaseDate) {
+    public Item(String name, BaseCategory baseCategory, SubCategory subCategory, BigDecimal purchasePrice, LocalDate purchaseDate) {
         this.name = name;
-        this.itemCategoryLevel1 = itemCategoryLevel1;
-        this.itemCategoryLevel2 = itemCategoryLevel2;
+        this.baseCategory = baseCategory;
+        this.subCategory = subCategory;
         this.purchasePrice = purchasePrice;
         this.purchaseDate = purchaseDate;
         this.deleted = false;
@@ -68,20 +68,20 @@ public class Item {
         this.name = name;
     }
 
-    public Level1Category getItemCategoryLevel1() {
-        return itemCategoryLevel1;
+    public BaseCategory getItemCategoryLevel1() {
+        return baseCategory;
     }
 
-    public void setItemCategoryLevel1(Level1Category itemCategoryLevel1) {
-        this.itemCategoryLevel1 = itemCategoryLevel1;
+    public void setItemCategoryLevel1(BaseCategory baseCategory) {
+        this.baseCategory = baseCategory;
     }
 
-    public Level2Category getItemCategoryLevel2() {
-        return itemCategoryLevel2;
+    public SubCategory getItemCategoryLevel2() {
+        return subCategory;
     }
 
-    public void setItemCategoryLevel2(Level2Category itemCategoryLevel2) {
-        this.itemCategoryLevel2 = itemCategoryLevel2;
+    public void setItemCategoryLevel2(SubCategory subCategory) {
+        this.subCategory = subCategory;
     }
 
     public BigDecimal getPurchasePrice() {
@@ -137,8 +137,8 @@ public class Item {
         return "Item{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", itemCategoryLevel1=" + itemCategoryLevel1 +
-                ", itemCategoryLevel2=" + itemCategoryLevel2 +
+                ", baseCategory=" + baseCategory +
+                ", subCategory=" + subCategory +
                 ", purchasePrice=" + purchasePrice +
                 ", purchaseDate=" + purchaseDate +
                 ", ownId='" + ownId + '\'' +

@@ -2,7 +2,7 @@ package com.timescale.server.enums;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum Level1Category {
+public enum BaseCategory {
     DIGITAL("数字产品", "软件、会员、游戏等数字商品"),
     ELECTRONICS("电子产品", "手机、电脑、相机等电子设备"),
     APPLIANCE("家用电器", "厨房电器、空调、冰箱等家电"),
@@ -16,7 +16,7 @@ public enum Level1Category {
     private final String displayName;
     private final String description;
 
-    Level1Category(String displayName, String description) {
+    BaseCategory(String displayName, String description) {
         this.displayName = displayName;
         this.description = description;
     }
@@ -35,12 +35,12 @@ public enum Level1Category {
         return name();
     }
 
-    public static Level1Category fromString(String value) {
+    public static BaseCategory fromString(String value) {
         if (value == null) {
             return null;
         }
         try {
-            return Level1Category.valueOf(value.toUpperCase());
+            return BaseCategory.valueOf(value.toUpperCase());
         } catch (IllegalArgumentException e) {
             return null;
         }

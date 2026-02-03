@@ -1,7 +1,7 @@
 package com.timescale.server.dto;
 
-import com.timescale.server.enums.Level1Category;
-import com.timescale.server.enums.Level2Category;
+import com.timescale.server.enums.BaseCategory;
+import com.timescale.server.enums.SubCategory;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -15,9 +15,9 @@ public class ItemCreateDTO {
     private String name;
 
     @NotNull(message = "商品一级分类不能为空")
-    private Level1Category itemCategoryLevel1;
+    private BaseCategory baseCategory;
 
-    private Level2Category itemCategoryLevel2;
+    private SubCategory subCategory;
 
     @NotNull(message = "购买价格不能为空")
     @Positive(message = "购买价格必须大于0")
@@ -36,20 +36,20 @@ public class ItemCreateDTO {
         this.name = name;
     }
 
-    public Level1Category getItemCategoryLevel1() {
-        return itemCategoryLevel1;
+    public BaseCategory getItemCategoryLevel1() {
+        return baseCategory;
     }
 
-    public void setItemCategoryLevel1(Level1Category itemCategoryLevel1) {
-        this.itemCategoryLevel1 = itemCategoryLevel1;
+    public void setItemCategoryLevel1(BaseCategory baseCategory) {
+        this.baseCategory = baseCategory;
     }
 
-    public Level2Category getItemCategoryLevel2() {
-        return itemCategoryLevel2;
+    public SubCategory getItemCategoryLevel2() {
+        return subCategory;
     }
 
-    public void setItemCategoryLevel2(Level2Category itemCategoryLevel2) {
-        this.itemCategoryLevel2 = itemCategoryLevel2;
+    public void setItemCategoryLevel2(SubCategory subCategory) {
+        this.subCategory = subCategory;
     }
 
     public BigDecimal getPurchasePrice() {
