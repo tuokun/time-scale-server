@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum BaseCategory {
     DIGITAL("数字虚拟", "软件、会员、游戏、虚拟权益等数字商品"),
-    ELECTRONICS("电子产品", "手机、电脑、相机等电子设备"),
+    ELECTRONICS("数码产品", "手机、电脑、相机等数码设备"),
     APPLIANCE("家用电器", "厨房电器、空调、冰箱等家电"),
     FURNITURE("家具", "床、沙发、桌子等家具"),
     CLOTHING("服饰", "衣服、鞋子、包包等"),

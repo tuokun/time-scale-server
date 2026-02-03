@@ -77,7 +77,7 @@ CREATE TABLE category_level2 (
 
 INSERT INTO category_level1 (category_code, category_name, description, sort_order) VALUES
 ('DIGITAL', '数字虚拟', '软件、会员、游戏、虚拟权益等数字商品', 1),
-('ELECTRONICS', '电子产品', '手机、电脑、相机等电子设备', 2),
+('ELECTRONICS', '数码产品', '手机、电脑、相机等数码设备', 2),
 ('APPLIANCE', '家用电器', '厨房电器、空调、冰箱等家电', 3),
 ('FURNITURE', '家具', '床、沙发、桌子等家具', 4),
 ('CLOTHING', '服饰', '衣服、鞋子、包包等', 5),
@@ -109,7 +109,7 @@ INSERT INTO category_level2 (base_category, category_code, category_name, descri
 ('DIGITAL', 'GAME_SKIN', '游戏皮肤', '游戏皮肤', 16),
 ('DIGITAL', 'OTHER_DIGITAL', '其他数字产品', '无法分类的数字产品', 17);
 
--- ELECTRONICS (电子产品)
+-- ELECTRONICS (数码产品)
 INSERT INTO category_level2 (base_category, category_code, category_name, description, sort_order) VALUES
 ('ELECTRONICS', 'MOBILE_PHONE', '手机', '智能手机', 1),
 ('ELECTRONICS', 'TABLET', '平板电脑', 'iPad等平板设备', 2),
@@ -125,7 +125,7 @@ INSERT INTO category_level2 (base_category, category_code, category_name, descri
 ('ELECTRONICS', 'SPEAKER', '音箱', '蓝牙音箱、桌面音箱', 12),
 ('ELECTRONICS', 'SMART_SPEAKER', '智能音箱', '小爱、天猫精灵等', 13),
 ('ELECTRONICS', 'SMART_HOME_DEVICE', '智能家居设备', '智能门锁、摄像头等', 14),
-('ELECTRONICS', 'OTHER_ELECTRONICS', '其他电子产品', '无法分类的电子产品', 15);
+('ELECTRONICS', 'OTHER_ELECTRONICS', '其他数码产品', '无法分类的数码产品', 15);
 
 -- APPLIANCE (家用电器)
 INSERT INTO category_level2 (base_category, category_code, category_name, description, sort_order) VALUES
@@ -233,7 +233,7 @@ INSERT INTO category_level2 (base_category, category_code, category_name, descri
 -- =====================================================
 
 INSERT INTO icon_mapping (sub_category, icon, icon_type, description, sort_order) VALUES
--- 电子产品
+-- 数码产品
 ('MOBILE_PHONE', '📱', 'emoji', '手机', 1),
 ('TABLET', '📱', 'emoji', '平板电脑', 2),
 ('LAPTOP', '💻', 'emoji', '笔记本电脑', 3),
@@ -248,7 +248,7 @@ INSERT INTO icon_mapping (sub_category, icon, icon_type, description, sort_order
 ('SPEAKER', '🔊', 'emoji', '音箱', 12),
 ('SMART_SPEAKER', '🔊', 'emoji', '智能音箱', 13),
 ('SMART_HOME_DEVICE', '🏠', 'emoji', '智能家居设备', 14),
-('OTHER_ELECTRONICS', '📱', 'emoji', '其他电子产品', 15),
+('OTHER_ELECTRONICS', '📱', 'emoji', '其他数码产品', 15),
 
 -- 家用电器
 ('RICE_COOKER', '🍳', 'emoji', '电饭煲', 16),
